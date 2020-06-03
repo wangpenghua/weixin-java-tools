@@ -1,9 +1,6 @@
 *.class
 test-output
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
 # Package Files #
 *.jar
 *.war
@@ -13,6 +10,7 @@ test-output
 hs_err_pid*
 
 target
+bin
 .project
 .classpath
 .settings
@@ -21,3 +19,34 @@ sw-pom.xml
 *.iml
 test-config.xml
 .idea
+/.gradle/
+/gradle/
+*.bat
+/gradlew
+**/build/
+
+
+._*
+.DS_Store
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.vscode
+.VolumeIcon.icns
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+/.sonar/
+sonar-project.properties
+
+!/.mvn/wrapper/maven-wrapper.jar
+*.versionsBackup
+
+# STS
+.factorypath

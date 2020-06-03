@@ -8,8 +8,9 @@ import java.lang.reflect.Type;
 
 public class WxMpOAuth2AccessTokenAdapter implements JsonDeserializer<WxMpOAuth2AccessToken> {
 
+  @Override
   public WxMpOAuth2AccessToken deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws
-      JsonParseException {
+    JsonParseException {
     WxMpOAuth2AccessToken accessToken = new WxMpOAuth2AccessToken();
     JsonObject accessTokenJsonObject = json.getAsJsonObject();
 
@@ -27,6 +28,9 @@ public class WxMpOAuth2AccessTokenAdapter implements JsonDeserializer<WxMpOAuth2
     }
     if (accessTokenJsonObject.get("scope") != null && !accessTokenJsonObject.get("scope").isJsonNull()) {
       accessToken.setScope(GsonHelper.getAsString(accessTokenJsonObject.get("scope")));
+    }
+    if (accessTokenJsonObject.get("unionid") != null && !accessTokenJsonObject.get("unionid").isJsonNull()) {
+      accessToken.setUnionId(GsonHelper.getAsString(accessTokenJsonObject.get("unionid")));
     }
     return accessToken;
   }

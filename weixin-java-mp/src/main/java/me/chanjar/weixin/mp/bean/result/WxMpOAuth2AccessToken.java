@@ -1,10 +1,16 @@
 package me.chanjar.weixin.mp.bean.result;
 
-import me.chanjar.weixin.mp.util.json.WxMpGsonBuilder;
-
 import java.io.Serializable;
 
+import lombok.Data;
+import me.chanjar.weixin.mp.util.json.WxMpGsonBuilder;
+
+/**
+ * https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
+ */
+@Data
 public class WxMpOAuth2AccessToken implements Serializable {
+  private static final long serialVersionUID = -1345910558078620805L;
 
   private String accessToken;
 
@@ -16,45 +22,11 @@ public class WxMpOAuth2AccessToken implements Serializable {
 
   private String scope;
 
-  public String getRefreshToken() {
-    return refreshToken;
-  }
-
-  public void setRefreshToken(String refreshToken) {
-    this.refreshToken = refreshToken;
-  }
-
-  public String getOpenId() {
-    return openId;
-  }
-
-  public void setOpenId(String openId) {
-    this.openId = openId;
-  }
-
-  public String getScope() {
-    return scope;
-  }
-
-  public void setScope(String scope) {
-    this.scope = scope;
-  }
-
-  public String getAccessToken() {
-    return accessToken;
-  }
-
-  public void setAccessToken(String accessToken) {
-    this.accessToken = accessToken;
-  }
-
-  public int getExpiresIn() {
-    return expiresIn;
-  }
-
-  public void setExpiresIn(int expiresIn) {
-    this.expiresIn = expiresIn;
-  }
+  /**
+   * https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement&announce_id=11513156443eZYea&version=&lang=zh_CN.
+   * 本接口在scope参数为snsapi_base时不再提供unionID字段。
+   */
+  private String unionId;
 
   public static WxMpOAuth2AccessToken fromJson(String json) {
     return WxMpGsonBuilder.create().fromJson(json, WxMpOAuth2AccessToken.class);
@@ -62,12 +34,6 @@ public class WxMpOAuth2AccessToken implements Serializable {
 
   @Override
   public String toString() {
-    return "WxMpOAuth2AccessToken{" +
-        "accessToken='" + accessToken + '\'' +
-        ", expiresTime=" + expiresIn +
-        ", refreshToken='" + refreshToken + '\'' +
-        ", openId='" + openId + '\'' +
-        ", scope='" + scope + '\'' +
-        '}';
+    return WxMpGsonBuilder.create().toJson(this);
   }
 }
